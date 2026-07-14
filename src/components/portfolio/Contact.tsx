@@ -1,161 +1,195 @@
-'use client'
-import { Mail, MapPin, Phone } from "lucide-react";
-import {z} from 'zod'
-import { useForm } from 'react-hook-form'
-import {zodResolver} from '@hookform/resolvers/zod'
+"use client";
 
-const contactInfo = z.object({
-  name: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
-  email: z.string().email('Email inválido'),
-  message: z.string().min(10, 'Mensagem deve ter pelo menos 10 caracteres'),
-})
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckCircle2, Mail, MapPin, Send } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { profile, socialLinks } from "./portfolio-data";
+import { Section } from "./Section";
 
-type ContactInfo = z.infer<typeof contactInfo>
+const contactSchema = z.object({
+  name: z.string().trim().min(3, "Indique um nome com pelo menos 3 caracteres."),
+  email: z.string().trim().email("Indique um email válido."),
+  subject: z.string().trim().min(4, "Indique um assunto com pelo menos 4 caracteres."),
+  message: z.string().trim().min(20, "A mensagem deve ter pelo menos 20 caracteres."),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 export function Contact() {
+  const [status, setStatus] = useState<"idle" | "success">("idle");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
 
-  const { register, handleSubmit, formState:{errors, isSubmitting}} = useForm<ContactInfo>({
-     resolver: zodResolver(contactInfo)
-  })
+  const onSubmit = (data: ContactFormData) => {
+    const body = encodeURIComponent(
+      `Nome: ${data.name}\nEmail: ${data.email}\n\n${data.message}`,
+    );
+    const subject = encodeURIComponent(data.subject);
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+    setStatus("success");
+    reset();
+  };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-gray-900 mb-4">Contato</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Tem um projeto em mente? Entre em contato comigo e
-              vamos conversar sobre como posso ajudar.
-            </p>
+    <Section
+      id="contact"
+      eyebrow="Contacto"
+      title="Vamos falar sobre o seu próximo projeto."
+      description="Envie uma mensagem com o contexto do projeto, objetivo ou problema técnico. Respondo com uma análise clara dos próximos passos."
+    >
+      <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+        <aside className="rounded-3xl border border-slate-200 bg-slate-950 p-6 text-white sm:p-8">
+          <h3 className="text-2xl font-semibold tracking-tight">Contacto direto</h3>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            Disponível para desenvolvimento web, integração de APIs, dashboards,
+            sistemas de gestão, consultoria técnica e projetos ligados a tecnologia automóvel.
+          </p>
+
+          <div className="mt-8 space-y-5">
+            <a
+              href={`mailto:${profile.email}`}
+              className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-colors hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+            >
+              <Mail className="mt-1 size-5 text-cyan-300" aria-hidden="true" />
+              <span>
+                <span className="block text-sm font-semibold">Email</span>
+                <span className="mt-1 block break-all text-sm text-slate-300">{profile.email}</span>
+              </span>
+            </a>
+            <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <MapPin className="mt-1 size-5 text-cyan-300" aria-hidden="true" />
+              <span>
+                <span className="block text-sm font-semibold">Localização</span>
+                <span className="mt-1 block text-sm text-slate-300">{profile.location}</span>
+              </span>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div>
-              <h3 className="text-gray-900 mb-6">
-                Informações de Contato
-              </h3>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="text-white" size={20} />
-                  </div>
-                  <div>
-                    <p className="text-gray-600 mb-1">Email</p>
-                    <a
-                      href="mailto:contato@exemplo.com"
-                      className="text-gray-900 hover:text-blue-600"
-                    >
-                      contato@exemplo.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="text-white" size={20} />
-                  </div>
-                  <div>
-                    <p className="text-gray-600 mb-1">
-                      Telefone
-                    </p>
-                    <a
-                      href="tel:+5511999999999"
-                      className="text-gray-900 hover:text-blue-600"
-                    >
-                      +55 (11) 99999-9999
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="text-white" size={20} />
-                  </div>
-                  <div>
-                    <p className="text-gray-600 mb-1">
-                      Localização
-                    </p>
-                    <p className="text-gray-900">
-                      São Paulo, Brasil
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div>
-              <form
-                onSubmit={handleSubmit(() => void (0))}
-                className="space-y-6"
+          <div className="mt-8 flex gap-3">
+            {socialLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-200 transition-colors hover:bg-white/[0.1] hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                aria-label={link.label}
               >
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-gray-700 mb-2"
-                  >
-                    Nome
-                  </label>
-                  <input
-                    type="text"
-                    {...register('name')}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
-                    placeholder="Seu nome"
-                  />
-                  {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-gray-700 mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    {...register('email')}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
-                    placeholder="seu@email.com"
-                  />
-                  {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-gray-700 mb-2"
-                  >
-                    Mensagem
-                  </label>
-                  <textarea
-                    id="message"
-                    {...register('message')}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none"
-                    placeholder="Sua mensagem..."
-                  />
-                  {errors.message && <p className="text-red-500">{errors.message.message}</p>}
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 text-white py-3 px-3 rounded-lg hover:bg-blue-700 transition-colors text-center"
-                  disabled={isSubmitting}
-                >
-                  Enviar Mensagem
-                </button>
-              </form>
-            </div>
+                <link.icon className="size-5" />
+              </a>
+            ))}
           </div>
-        </div>
+        </aside>
+
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+          noValidate
+        >
+          <div className="grid gap-5 sm:grid-cols-2">
+            <FormField label="Nome" error={errors.name?.message}>
+              <input
+                id="name"
+                type="text"
+                autoComplete="name"
+                {...register("name")}
+                className="field"
+                placeholder="O seu nome"
+                aria-invalid={Boolean(errors.name)}
+              />
+            </FormField>
+            <FormField label="Email" error={errors.email?.message}>
+              <input
+                id="email"
+                type="email"
+                autoComplete="email"
+                {...register("email")}
+                className="field"
+                placeholder="nome@email.com"
+                aria-invalid={Boolean(errors.email)}
+              />
+            </FormField>
+          </div>
+
+          <div className="mt-5">
+            <FormField label="Assunto" error={errors.subject?.message}>
+              <input
+                id="subject"
+                type="text"
+                {...register("subject")}
+                className="field"
+                placeholder="Ex.: Desenvolvimento de dashboard"
+                aria-invalid={Boolean(errors.subject)}
+              />
+            </FormField>
+          </div>
+
+          <div className="mt-5">
+            <FormField label="Mensagem" error={errors.message?.message}>
+              <textarea
+                id="message"
+                rows={6}
+                {...register("message")}
+                className="field resize-none"
+                placeholder="Conte-me o contexto, objetivo e prazo aproximado."
+                aria-invalid={Boolean(errors.message)}
+              />
+            </FormField>
+          </div>
+
+          {status === "success" ? (
+            <div className="mt-5 flex items-start gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
+              <CheckCircle2 className="mt-0.5 size-5 shrink-0" aria-hidden="true" />
+              <p>A mensagem foi preparada no seu cliente de email. Confirme o envio para concluir.</p>
+            </div>
+          ) : null}
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-950/10 transition-all hover:-translate-y-0.5 hover:bg-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          >
+            <Send className="size-4" />
+            Enviar mensagem
+          </button>
+        </form>
       </div>
-    </section>
+    </Section>
+  );
+}
+
+function FormField({
+  label,
+  error,
+  children,
+}: {
+  label: string;
+  error?: string;
+  children: React.ReactElement<{ id?: string }>;
+}) {
+  const fieldId = children.props.id;
+
+  return (
+    <div>
+      <label htmlFor={fieldId} className="mb-2 block text-sm font-semibold text-slate-800">
+        {label}
+      </label>
+      {children}
+      {error ? <p className="mt-2 text-sm font-medium text-red-600">{error}</p> : null}
+    </div>
   );
 }

@@ -1,52 +1,45 @@
-import { Code, Palette, Zap } from 'lucide-react';
+import { aboutCards } from "./portfolio-data";
+import { Section } from "./Section";
 
 export function About() {
-  const features = [
-    {
-      icon: Code,
-      title: 'Código Limpo',
-      description: 'Escrevo código mantível e escalável seguindo as melhores práticas da indústria.',
-    },
-    {
-      icon: Palette,
-      title: 'Design Responsivo',
-      description: 'Crio interfaces que funcionam perfeitamente em todos os dispositivos e tamanhos de tela.',
-    },
-    {
-      icon: Zap,
-      title: 'Performance',
-      description: 'Otimizo cada aplicação para garantir carregamento rápido e experiência fluida.',
-    },
-  ];
-
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-gray-900 mb-4">Sobre Mim</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Sou um desenvolvedor frontend apaixonado por criar experiências digitais que fazem diferença. 
-              Com experiência em tecnologias modernas, transformo designs em código funcional e elegante.
-            </p>
-          </div>
+    <Section
+      id="about"
+      eyebrow="Sobre mim"
+      title="Perfil técnico com foco em produto, código e resolução de problemas."
+      description="Desenvolvo soluções frontend e backend com uma abordagem prática: entender o problema, organizar a experiência, estruturar o código e entregar uma interface clara para quem utiliza."
+    >
+      <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+          <p className="text-base leading-8 text-slate-700">
+            Trabalho principalmente com Next.js, React, TypeScript, JavaScript, Node.js,
+            APIs REST, PostgreSQL e Tailwind CSS. Tenho experiência na criação de
+            sistemas reais, plataformas de gestão, fluxos de autenticação, formulários,
+            dashboards e integrações entre serviços.
+          </p>
+          <p className="mt-5 text-base leading-8 text-slate-700">
+            A minha base em mecatrónica e diagnóstico automóvel ajuda-me a pensar em
+            sistemas de forma analítica: observar sinais, isolar causas, testar soluções
+            e documentar decisões. Essa disciplina torna-se útil no debugging, na
+            arquitetura de software e na comunicação com clientes ou equipas.
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-blue-50 p-8 rounded-lg hover:shadow-lg transition-shadow"
-              >
-                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="text-white" size={24} />
-                </div>
-                <h3 className="text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+        <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+          {aboutCards.map((card) => (
+            <article
+              key={card.title}
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-950/5"
+            >
+              <div className="mb-5 grid size-12 place-items-center rounded-2xl bg-cyan-50 text-cyan-700">
+                <card.icon className="size-6" aria-hidden="true" />
               </div>
-            ))}
-          </div>
+              <h3 className="text-lg font-semibold text-slate-950">{card.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{card.description}</p>
+            </article>
+          ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
