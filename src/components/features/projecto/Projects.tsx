@@ -2,9 +2,9 @@
 
 import { ExternalLink, Github, Layers3, X } from "lucide-react";
 import { useMemo, useState } from "react";
-import { projectFilters, projects } from "./portfolio-data";
-import type { ProjectCategory } from "./portfolio-data";
-import { Section, TechBadge } from "./Section";
+import { projectFilters, projects } from "@/config/portfolio";
+import type { ProjectCategory } from "@/config/portfolio";
+import { Section, TechBadge } from "@/components/shared/Section";
 
 type Project = (typeof projects)[number];
 

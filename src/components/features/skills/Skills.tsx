@@ -1,5 +1,5 @@
-import { skillCategories } from "./portfolio-data";
-import { Section, TechBadge } from "./Section";
+import { skillCategories } from "@/config/portfolio";
+import { Section, TechBadge } from "@/components/shared/Section";
 
 export function Skills() {
   return (

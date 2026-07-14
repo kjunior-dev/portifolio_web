@@ -5,8 +5,8 @@ import { CheckCircle2, Mail, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { profile, socialLinks } from "./portfolio-data";
-import { Section } from "./Section";
+import { profile, socialLinks } from "@/config/portfolio";
+import { Section } from "@/components/shared/Section";
 
 const contactSchema = z.object({
   name: z.string().trim().min(3, "Indique um nome com pelo menos 3 caracteres."),

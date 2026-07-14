@@ -1,4 +1,4 @@
-import { navigation, profile, socialLinks } from "./portfolio-data";
+import { navigation, profile, socialLinks } from "@/config/portfolio";
 
 export function Footer() {
   const year = new Date().getFullYear();

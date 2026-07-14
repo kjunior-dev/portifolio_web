@@ -1,27 +1,26 @@
-import { About } from "@/components/portfolio/About";
-import { Contact } from "@/components/portfolio/Contact";
-import { Education } from "@/components/portfolio/Education";
-import { Experience } from "@/components/portfolio/Experience";
-import { Footer } from "@/components/portfolio/Footer";
-import { Header } from "@/components/portfolio/Header";
-import { Hero } from "@/components/portfolio/Hero";
-import { Projects } from "@/components/portfolio/Projects";
-import { Services } from "@/components/portfolio/Services";
-import { Skills } from "@/components/portfolio/Skills";
+import {HeroTemplate} from "@/components/template/HeroTemplate/HeroTemplate";
+import {AboutTemplate} from "@/components/template/SobreMimTemplate/AboutTemplate";
+import {SkillsTemplate} from "@/components/template/SkillsTemplate/SkillsTemplate";
+import {ExperienceTemplate} from "@/components/template/ExperienciaTemplate/ExperienceTemplate";
+import {ProjectsTemplate} from "@/components/template/ProjectoTemplate/ProjectsTemplate";
+import {ServicesTemplate} from "@/components/template/ServicoTemplate/ServicesTemplate";
+import {EducationTemplate} from "@/components/template/EducationTemplate/EducationTemplate";
+import {ContactTemplate} from "@/components/template/ContactoTemplate/ContactTemplate";
+import {Footer, Header} from "@/components/layout";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Services />
-        <Education />
-        <Contact />
+        <HeroTemplate/>
+        <AboutTemplate/>
+        <SkillsTemplate/>
+        <ExperienceTemplate/>
+        <ProjectsTemplate/>
+        <ServicesTemplate/>
+        <EducationTemplate/>
+        <ContactTemplate/>
       </main>
       <Footer />
     </div>

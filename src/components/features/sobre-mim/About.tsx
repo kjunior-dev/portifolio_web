@@ -1,5 +1,5 @@
-import { aboutCards } from "./portfolio-data";
-import { Section } from "./Section";
+import { aboutCards } from "@/config/portfolio";
+import { Section } from "@/components/shared/Section";
 
 export function About() {
   return (

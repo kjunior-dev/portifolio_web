@@ -1,5 +1,5 @@
-import { education } from "./portfolio-data";
-import { Section } from "./Section";
+import { education } from "@/config/portfolio";
+import { Section } from "@/components/shared/Section";
 
 export function Education() {
   return (

@@ -26,7 +26,7 @@ export const profile = {
   location: "Disponível para projetos remotos",
   github: "https://github.com/kjunior-dev",
   linkedin: "https://www.linkedin.com/in/kevin-sousa-778293210/",
-  resumeHref: "/cv-kevin-sousa.pdf",
+  resumeHref: "#contact",
   avatar:
     "https://media.licdn.com/dms/image/v2/D4E03AQEOmtW6ntKzSQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1719310170802?e=1762992000&v=beta&t=xZTujuHFJ4ON5WDxSz6G-CESenKL790P3rdYYmyI-Lw",
 };

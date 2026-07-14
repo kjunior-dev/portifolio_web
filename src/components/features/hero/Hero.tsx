@@ -1,6 +1,6 @@
 import { ArrowRight, Download, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
-import { highlights, profile, socialLinks } from "./portfolio-data";
+import { highlights, profile, socialLinks } from "@/config/portfolio";
 
 export function Hero() {
   return (
@@ -48,7 +48,7 @@ export function Hero() {
               className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600"
             >
               <Download className="size-4" />
-              Descarregar CV
+              Solicitar CV
             </a>
           </div>
 

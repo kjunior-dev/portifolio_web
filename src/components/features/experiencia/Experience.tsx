@@ -1,6 +1,6 @@
 import { CalendarDays } from "lucide-react";
-import { experience } from "./portfolio-data";
-import { Section, TechBadge } from "./Section";
+import { experience } from "@/config/portfolio";
+import { Section, TechBadge } from "@/components/shared/Section";
 
 export function Experience() {
   return (

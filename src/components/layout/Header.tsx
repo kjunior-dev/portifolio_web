@@ -2,7 +2,7 @@
 
 import { Download, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { navigation, profile } from "./portfolio-data";
+import { navigation, profile } from "@/config/portfolio";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
