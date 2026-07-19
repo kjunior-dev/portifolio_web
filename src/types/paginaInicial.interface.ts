@@ -26,6 +26,7 @@ export interface HeroApi {
     nome: string | null;
     cargo: string | null;
     localizacao: string | null;
+    iconn: string | null;
     objetivo: string | null;
     competencias: HeroCompetenciaApi[];
     curriculo: MediaApi | null;

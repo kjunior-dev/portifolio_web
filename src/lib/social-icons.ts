@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa6";
 
 import { MdEmail } from "react-icons/md";
-import {FaArrowCircleRight} from "react-icons/fa";
+import {FaArrowCircleRight, FaMapMarkerAlt} from "react-icons/fa";
 import {GoDownload} from "react-icons/go";
 import { LuMonitorSmartphone, LuWrench } from "react-icons/lu";
 import {FiServer} from "react-icons/fi";
@@ -39,6 +39,7 @@ export const socialIcons = {
     FaDatabase,
     GrSecure,
     IoTerminal,
+    FaMapMarkerAlt,
 } satisfies Record<string, IconType>;
 
 export type SocialIconName = keyof typeof socialIcons;

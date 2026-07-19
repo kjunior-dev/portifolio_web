@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {HeroApi} from "@/types/paginaInicial.interface";
+import {getSocialIcon} from "@/lib/social-icons";
 
 interface IAvatarProfile{
     hero: HeroApi | null | undefined
@@ -12,6 +13,8 @@ export function AvatarProfile({
     const profileImageSrc = profileImageUrl?.startsWith("/uploads/")
         ? `/api${profileImageUrl}`
         : profileImageUrl;
+
+    const Icon = getSocialIcon(hero?.iconn || "")
 
     return(
         <div className="flex items-center gap-4">
@@ -32,7 +35,14 @@ export function AvatarProfile({
                     {hero?.cargo}
                 </p>
                 <p className="mt-2 inline-flex items-center gap-1 text-xs text-cyan-200">
-                    {/*<MapPin className="size-3" />*/}
+                    {
+                        Icon && (
+                            <Icon
+                                className="size-4"
+                                aria-hidden="true"
+                            />
+                        )
+                    }
                     {hero?.localizacao}
                 </p>
             </div>

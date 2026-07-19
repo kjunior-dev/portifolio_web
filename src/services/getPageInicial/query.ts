@@ -17,6 +17,7 @@ export default gql`
       nome
       cargo
       localizacao
+      iconn
       objetivo
       competencias {
         titulo
