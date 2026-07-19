@@ -1,23 +1,22 @@
+import { FaGithub as Github, FaLinkedin as Linkedin } from "react-icons/fa6";
 import {
-  BadgeCheck,
-  Braces,
-  CarFront,
-  Code2,
-  Database,
-  Github,
-  GraduationCap,
-  LayoutDashboard,
-  Linkedin,
-  LockKeyhole,
-  Mail,
-  MonitorSmartphone,
-  Rocket,
-  Server,
-  Settings,
-  ShieldCheck,
-  TerminalSquare,
-  Wrench,
-} from "lucide-react";
+  LuBadgeCheck as BadgeCheck,
+  LuBraces as Braces,
+  LuCarFront as CarFront,
+  LuCode as Code2,
+  LuDatabase as Database,
+  LuGraduationCap as GraduationCap,
+  LuLayoutDashboard as LayoutDashboard,
+  LuLockKeyhole as LockKeyhole,
+  LuMail as Mail,
+  LuMonitorSmartphone as MonitorSmartphone,
+  LuRocket as Rocket,
+  LuServer as Server,
+  LuSettings as Settings,
+  LuShieldCheck as ShieldCheck,
+  LuSquareTerminal as TerminalSquare,
+  LuWrench as Wrench,
+} from "react-icons/lu";
 
 export const profile = {
   name: "Kevin Sousa",
@@ -140,11 +139,15 @@ export const experience = [
 export const projectFilters = [
   "Todos",
   "Frontend",
-  "Full Stack",
   "Backend",
-  "Sistemas de gestão",
+  "Full Stack",
   "Projetos pessoais",
   "Projetos profissionais",
+  "GovTech",
+  "Website institucional",
+  "Integração GraphQL",
+  "Formação profissional",
+  "Portal governamental",
 ] as const;
 
 export type ProjectCategory = (typeof projectFilters)[number];

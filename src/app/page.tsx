@@ -7,22 +7,53 @@ import {ServicesTemplate} from "@/components/template/ServicoTemplate/ServicesTe
 import {EducationTemplate} from "@/components/template/EducationTemplate/EducationTemplate";
 import {ContactTemplate} from "@/components/template/ContactoTemplate/ContactTemplate";
 import {Footer, Header} from "@/components/layout";
+import {getPageInicial} from "@/services/getPageInicial";
+import {getCategorial} from "@/services/getCategoria";
+import {getProjetos} from "@/services/getProjetos";
 
-export default function Home() {
-  return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main>
-        <HeroTemplate/>
-        <AboutTemplate/>
-        <SkillsTemplate/>
-        <ExperienceTemplate/>
-        <ProjectsTemplate/>
-        <ServicesTemplate/>
-        <EducationTemplate/>
-        <ContactTemplate/>
-      </main>
-      <Footer />
-    </div>
-  );
+type HomeProps = {
+    searchParams?: Promise<{
+        projectsPage?: string | string[];
+    }>;
+};
+
+export default async function Home({searchParams}: HomeProps) {
+    const params = await searchParams;
+    const projectsPageParam = Array.isArray(params?.projectsPage)
+        ? params?.projectsPage[0]
+        : params?.projectsPage;
+    const projectsPage = Number(projectsPageParam) > 0 ? Number(projectsPageParam) : 1;
+
+    const [ data, categoria, projetos, todosProjetos ] = await Promise.all([
+        getPageInicial().catch(() => null),
+        getCategorial().catch(() => null),
+        getProjetos({page: projectsPage}).catch(() => null),
+        getProjetos({pageSize: 100}).catch(() => null),
+    ])
+
+      return (
+        <div className="min-h-screen bg-white">
+          <Header />
+          <main>
+                <HeroTemplate hero={data?.hero}/>
+              { data?.sobreMim?.ativo && (<AboutTemplate about={data?.sobreMim}/>)}
+              { data?.competenciasTecnicas?.ativo && (<SkillsTemplate compTecnica={data?.competenciasTecnicas}/>)}
+              { data?.experienciaProfissional?.ativo && (<ExperienceTemplate expProf={data?.experienciaProfissional}/>)}
+              { data?.projetos?.ativo && (
+                  <ProjectsTemplate
+                      projetoHeader={data?.projetos}
+                      categoria={categoria}
+                      projetos={projetos?.projetos}
+                      todosProjetos={todosProjetos?.projetos}
+                      pagination={projetos?.pagination}
+                  />
+              )}
+
+            <ServicesTemplate/>
+            <EducationTemplate/>
+            <ContactTemplate/>
+          </main>
+          <Footer />
+        </div>
+      );
 }

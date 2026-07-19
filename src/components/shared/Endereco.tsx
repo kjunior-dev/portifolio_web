@@ -1,4 +1,5 @@
-import {Github, Linkedin, Mail} from "lucide-react";
+import { FaGithub as Github, FaLinkedin as Linkedin } from "react-icons/fa6";
+import { LuMail as Mail } from "react-icons/lu";
 
 export function Endereco(){
     return (

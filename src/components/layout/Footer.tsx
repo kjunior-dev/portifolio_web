@@ -1,8 +1,6 @@
 import { navigation, profile, socialLinks } from "@/config/portfolio";
 
 export function Footer() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="border-t border-slate-200 bg-white py-10">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
@@ -26,7 +24,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-5 border-t border-slate-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-slate-500">
-            © {year} {profile.name}. Todos os direitos reservados.
+            © 2026 {profile.name}. Todos os direitos reservados.
           </p>
           <div className="flex gap-3">
             {socialLinks.map((link) => (

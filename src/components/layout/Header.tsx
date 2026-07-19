@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, Menu, X } from "lucide-react";
+import { LuDownload as Download, LuMenu as Menu, LuX as X } from "react-icons/lu";
 import { useState } from "react";
 import { navigation, profile } from "@/config/portfolio";
 

@@ -1,9 +1,21 @@
 import {Hero} from "@/components/features/hero/Hero";
+import {HeroApi} from "@/types/paginaInicial.interface";
 
-export function HeroTemplate(){
+export interface IHeroProps{
+    hero: HeroApi | null | undefined
+}
+
+export function HeroTemplate({
+    hero
+}: IHeroProps){
+
   return(
       <>
-        <Hero/>
+          {
+              hero && (
+                  <Hero hero={hero}/>
+              )
+          }
       </>
   )
 }

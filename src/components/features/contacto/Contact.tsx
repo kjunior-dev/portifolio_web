@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2, Mail, MapPin, Send } from "lucide-react";
+import { LuCircleCheck as CheckCircle2, LuMail as Mail, LuMapPin as MapPin, LuSend as Send } from "react-icons/lu";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
