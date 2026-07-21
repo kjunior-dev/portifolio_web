@@ -110,7 +110,7 @@ export function Contact({
                       href={link.url}
                       target={link.url.startsWith("http") ? "_blank" : undefined}
                       rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="inline-flex size-11 justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-200 transition-colors hover:bg-white/[0.1] hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                      className="inline-flex size-11 justify-center rounded-full bg-white/[0.04] text-slate-200 transition-colors hover:bg-white/[0.1] hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                       aria-label={link.nome}
                   >
                     {
