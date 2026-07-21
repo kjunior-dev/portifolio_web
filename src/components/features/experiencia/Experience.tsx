@@ -7,7 +7,7 @@ export function Experience({
 }: IExperienceTemplate){
   return (
     <Section
-      id={'experience'}
+      id={'experiencia'}
       eyebrow={expProf?.etiqueta || ''}
       title={expProf?.titulo || ''}
       description={expProf?.descricao || ''}
@@ -16,27 +16,27 @@ export function Experience({
         {expProf?.experiencias.map((item) => (
             <article
                 key={`${item.area}-${item.cargo}`}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8"
             >
               <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-cyan-700">{item.area}</p>
-                  <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950">
+                  <p className="text-sm font-semibold text-cyan-700 dark:text-cyan-300">{item.area}</p>
+                  <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">
                     {item.cargo}
                   </h3>
               </div>
-              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-600">
+              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
                 <CalendarDays className="size-4" aria-hidden="true" />
                 {item.tipoExperiencia}
               </div>
             </div>
 
-            <p className="mt-5 max-w-4xl text-base leading-7 text-slate-600">{item.descricao}</p>
+            <p className="mt-5 max-w-4xl text-base leading-7 text-slate-600 dark:text-slate-300">{item.descricao}</p>
 
             <div className="mt-6 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
               <ul className="space-y-3">
                 {item.responsabilidades.map((responsibility) => (
-                  <li key={responsibility?.ordem} className="flex gap-3 text-sm leading-6 text-slate-700">
+                  <li key={responsibility?.ordem} className="flex gap-3 text-sm leading-6 text-slate-700 dark:text-slate-300">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-cyan-600" />
                     <span>{responsibility?.texto}</span>
                   </li>

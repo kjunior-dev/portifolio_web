@@ -79,11 +79,11 @@ export function Projects({
 
   return (
     <Section
-      id="projects"
+      id="projetos"
       eyebrow={projetoHeader?.etiqueta || ''}
       title={projetoHeader?.titulo || ''}
       description={projetoHeader?.descricao || ''}
-      className="bg-slate-50"
+      className="bg-slate-50 dark:bg-slate-900"
     >
 
       {/* Categorias */}
@@ -98,8 +98,8 @@ export function Projects({
               onClick={() => setActiveFilter(filter.slug)}
               className={`shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 ${
                 isActive
-                  ? "border-slate-950 bg-slate-950 text-white"
-                  : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 hover:bg-cyan-50"
+                  ? "border-slate-950 bg-slate-950 text-white dark:border-white dark:bg-white dark:text-slate-950"
+                  : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 hover:bg-cyan-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/40"
               }`}
               aria-pressed={isActive}
             >
@@ -125,29 +125,29 @@ export function Projects({
             return (
               <article
                 key={project.slug}
-                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-950/8"
+                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-950/8 dark:border-slate-800 dark:bg-slate-950 dark:hover:shadow-black/30"
               >
                 <ProjectPreview project={project} />
 
                 <div className="p-6 sm:p-7">
                   <div className="mb-3 flex flex-wrap items-center gap-2">
                     {project.categoriaPrincipal_connection?.nodes[0] ? (
-                      <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-800">
+                      <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-800 dark:bg-cyan-950/50 dark:text-cyan-200">
                         {project.categoriaPrincipal_connection.nodes[0].nome}
                       </span>
                     ) : null}
                     {projectCategories.map((category) => (
                       <span
                         key={category.slug}
-                        className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600"
+                        className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300"
                       >
                         {category.nome}
                       </span>
                     ))}
                   </div>
-                <h3 className="text-2xl font-semibold tracking-tight text-slate-950">{project.titulo}</h3>
+                <h3 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{project.titulo}</h3>
                 {project.resumo ? (
-                  <p className="mt-3 text-sm leading-6 text-slate-600">{project.resumo}</p>
+                  <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{project.resumo}</p>
                 ) : null}
 
                 <div className="mt-5 flex flex-wrap gap-2">
@@ -160,7 +160,7 @@ export function Projects({
                   <button
                     type="button"
                     onClick={() => setSelectedProject(project)}
-                    className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 active:translate-y-0"
+                    className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 active:translate-y-0 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-200"
                   >
                     {project.labelButton ?? "Ver detalhes"}
                   </button>
@@ -169,7 +169,7 @@ export function Projects({
                       href={project.urlDemo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-cyan-300 hover:bg-cyan-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-cyan-300 hover:bg-cyan-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:border-slate-700 dark:text-slate-200 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/40"
                     >
                       <ExternalLink className="size-4" />
                       Demo
@@ -180,7 +180,7 @@ export function Projects({
                       href={project.urlCodigo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600"
+                      className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:text-slate-200 dark:hover:bg-slate-800"
                     >
                       <Github className="size-4" />
                       Código

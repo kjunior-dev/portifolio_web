@@ -15,22 +15,22 @@ export function Section({
   title,
   description,
   children,
-  className = "bg-white",
+  className = "bg-white dark:bg-slate-950",
 }: SectionProps) {
   return (
     <section id={id} className={`scroll-mt-24 py-16 sm:py-20 lg:py-24 ${className}`}>
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-3xl sm:mb-14">
           {eyebrow ? (
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-cyan-700">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-cyan-700 dark:text-cyan-300">
               {eyebrow}
             </p>
           ) : null}
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-4xl">
             {title}
           </h2>
           {description ? (
-            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">{description}</p>
+            <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">{description}</p>
           ) : null}
         </div>
         {children}
@@ -41,7 +41,7 @@ export function Section({
 
 export function TechBadge({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-cyan-200 hover:bg-cyan-50">
+    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-cyan-200 hover:bg-cyan-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/40">
       {children}
     </span>
   );

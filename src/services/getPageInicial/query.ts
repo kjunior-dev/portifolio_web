@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export default gql`
-   query PaginaInicial {
+  query PaginaInicial {
   paginaInicial {
     documentId
     hero {
@@ -17,7 +17,6 @@ export default gql`
       nome
       cargo
       localizacao
-      iconn
       objetivo
       competencias {
         titulo
@@ -185,6 +184,20 @@ export default gql`
           mostrarRedesSociais
           nome
           textoDireitos
+        redesSocial {
+          id
+          nome
+          icon
+          novaAba
+          ordem
+          url
+        }
+        menuPrincipal {
+          id
+          texto
+          url
+          ordem
+        }
       }
   }
 }

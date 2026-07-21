@@ -1,3 +1,5 @@
+import {MenuPrincipalApi} from "@/types/confSite";
+
 export interface PaginaInicialQueryResponse {
     paginaInicial: PaginaInicialApi | null;
 }
@@ -202,6 +204,8 @@ export interface FooterApi {
     mostrarRedesSociais: boolean;
     nome: string | null;
     textoDireitos: string | null;
+    redesSocial: RedeSocialApi[];
+    menuPrincipal: MenuPrincipalApi[];
 }
 
 /**

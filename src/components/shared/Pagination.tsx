@@ -33,8 +33,8 @@ export function Pagination({
                 aria-disabled={currentPage === 1}
                 className={`inline-flex size-10 items-center justify-center rounded-full border text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 ${
                     currentPage === 1
-                        ? "pointer-events-none border-slate-200 text-slate-300"
-                        : "border-slate-200 text-slate-700 hover:border-cyan-300 hover:bg-cyan-50"
+                        ? "pointer-events-none border-slate-200 text-slate-300 dark:border-slate-800 dark:text-slate-700"
+                        : "border-slate-200 text-slate-700 hover:border-cyan-300 hover:bg-cyan-50 dark:border-slate-700 dark:text-slate-300 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/40"
                 }`}
             >
                 <ChevronLeft className="size-4" />
@@ -51,8 +51,8 @@ export function Pagination({
                         aria-current={isActive ? "page" : undefined}
                         className={`inline-flex size-10 items-center justify-center rounded-full border text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 ${
                             isActive
-                                ? "border-slate-950 bg-slate-950 text-white"
-                                : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 hover:bg-cyan-50"
+                                ? "border-slate-950 bg-slate-950 text-white dark:border-white dark:bg-white dark:text-slate-950"
+                                : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 hover:bg-cyan-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/40"
                         }`}
                     >
                         {page}
@@ -65,8 +65,8 @@ export function Pagination({
                 aria-disabled={currentPage === pageCount}
                 className={`inline-flex size-10 items-center justify-center rounded-full border text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 ${
                     currentPage === pageCount
-                        ? "pointer-events-none border-slate-200 text-slate-300"
-                        : "border-slate-200 text-slate-700 hover:border-cyan-300 hover:bg-cyan-50"
+                        ? "pointer-events-none border-slate-200 text-slate-300 dark:border-slate-800 dark:text-slate-700"
+                        : "border-slate-200 text-slate-700 hover:border-cyan-300 hover:bg-cyan-50 dark:border-slate-700 dark:text-slate-300 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/40"
                 }`}
             >
                 <ChevronRight className="size-4" />

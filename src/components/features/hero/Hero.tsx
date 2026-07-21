@@ -9,14 +9,14 @@ export function Hero({
   return (
     <section
       id="hero"
-      className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_top_left,#e0f7fa_0,#f8fafc_34%,#ffffff_72%)] pt-28 sm:pt-32"
+      className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_top_left,#e0f7fa_0,#f8fafc_34%,#ffffff_72%)] pt-28 dark:bg-[radial-gradient(circle_at_top_left,#164e63_0,#0f172a_34%,#020617_72%)] sm:pt-32"
     >
       <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-12 px-4 pb-16 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:pb-24">
         {/* HeroProfile */}
         <HeroProfile hero={hero}/>
 
         <div className="relative">
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-950/10">
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-950/10 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/30">
             <div className="overflow-hidden rounded-[1.5rem] bg-slate-950">
               <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
                 <span className="size-3 rounded-full bg-red-400" />

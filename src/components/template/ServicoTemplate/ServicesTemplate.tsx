@@ -1,9 +1,15 @@
 import { Services } from "@/components/features/servico/Services";
+import {ServicosApi} from "@/types/paginaInicial.interface";
 
-export function ServicesTemplate(){
+export interface IServicesTemplate{
+    servicos: ServicosApi | null | undefined
+}
+export function ServicesTemplate({
+    servicos
+}: IServicesTemplate){
   return(
       <>
-        <Services />
+        <Services servicos={servicos}/>
       </>
   )
 }

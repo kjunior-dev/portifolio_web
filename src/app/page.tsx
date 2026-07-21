@@ -10,6 +10,7 @@ import {Footer, Header} from "@/components/layout";
 import {getPageInicial} from "@/services/getPageInicial";
 import {getCategorial} from "@/services/getCategoria";
 import {getProjetos} from "@/services/getProjetos";
+import {getConfSite} from "@/services/getConfSite";
 
 type HomeProps = {
     searchParams?: Promise<{
@@ -24,16 +25,17 @@ export default async function Home({searchParams}: HomeProps) {
         : params?.projectsPage;
     const projectsPage = Number(projectsPageParam) > 0 ? Number(projectsPageParam) : 1;
 
-    const [ data, categoria, projetos, todosProjetos ] = await Promise.all([
+    const [ data, categoria, projetos, todosProjetos, menu ] = await Promise.all([
         getPageInicial().catch(() => null),
         getCategorial().catch(() => null),
         getProjetos({page: projectsPage}).catch(() => null),
         getProjetos({pageSize: 100}).catch(() => null),
+        getConfSite().catch(() => null),
     ])
 
       return (
-        <div className="min-h-screen bg-white">
-          <Header />
+        <div className="min-h-screen bg-white dark:bg-slate-950">
+          <Header menu={menu}/>
           <main>
                 <HeroTemplate hero={data?.hero}/>
               { data?.sobreMim?.ativo && (<AboutTemplate about={data?.sobreMim}/>)}
@@ -48,12 +50,11 @@ export default async function Home({searchParams}: HomeProps) {
                       pagination={projetos?.pagination}
                   />
               )}
-
-            <ServicesTemplate/>
-            <EducationTemplate/>
-            <ContactTemplate/>
+              { data?.servicos?.ativo && (<ServicesTemplate servicos={data?.servicos}/>)}
+              { data?.formacaoCertificacoes?.ativo && (<EducationTemplate formacao={data?.formacaoCertificacoes}/>)}
+              { data?.formacaoCertificacoes?.ativo && ( <ContactTemplate contato={data?.contacto}/>)}
           </main>
-          <Footer />
+          <Footer footer={data?.footer}/>
         </div>
       );
 }

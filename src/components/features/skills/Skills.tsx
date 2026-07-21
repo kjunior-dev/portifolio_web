@@ -7,11 +7,11 @@ export function Skills({
 }: ISkillsProps){
   return (
     <Section
-      id="skills"
+      id="competencias"
       eyebrow={compTecnica?.etiqueta || ''}
       title={compTecnica?.titulo || ''}
       description={compTecnica?.descricao || ''}
-      className="bg-slate-50"
+      className="bg-slate-50 dark:bg-slate-900"
     >
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {compTecnica?.categorias.map((category) => {
@@ -19,7 +19,7 @@ export function Skills({
           return(
               <article
                   key={category.ordem}
-                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-950/5"
+                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-950/5 dark:border-slate-800 dark:bg-slate-950 dark:hover:shadow-black/20"
               >
                 <div className="mb-5 flex items-center gap-3">
                   {
@@ -32,7 +32,7 @@ export function Skills({
                           </div>
                       )
                   }
-                  <h3 className="text-lg font-semibold text-slate-950">{category.titulo}</h3>
+                  <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{category.titulo}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {category.tecnologias.map((skill) => (
