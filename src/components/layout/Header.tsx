@@ -12,6 +12,7 @@ export function Header({
     menu
 }: IHeader) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const curriculoUrl = menu?.curriculo ?? "";
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -51,7 +52,8 @@ export function Header({
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
           <a
-            href={""}
+            href={curriculoUrl}
+            target={'_blank'}
             className="inline-flex h-10 items-center gap-2 rounded-full border border-slate-200 px-4 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:border-slate-700 dark:text-slate-200 dark:hover:border-slate-600 dark:hover:bg-slate-800"
           >
             <Download className="size-4" />
@@ -95,9 +97,11 @@ export function Header({
             </div>
             <div className="mt-2 grid grid-cols-2 gap-3">
               <a
-                href={'#contato'}
+                href={curriculoUrl}
+                target="_blank"
                 onClick={closeMenu}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:border-slate-700 dark:text-slate-200"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:border-slate-700 dark:text-slate-200"
               >
                 <Download className="size-4" />
                 CV

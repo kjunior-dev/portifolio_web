@@ -4,21 +4,8 @@ export interface ConfiguracoesDoSiteResponse {
 
 export interface ConfiguracoesDoSiteApi {
     documentId: string;
-    curriculo: CurriculoApi | null;
+    curriculo: string | null;
     menuPrincipal: MenuPrincipalApi[];
-}
-
-export interface CurriculoApi {
-    formats: Record<string, FormatoArquivoApi> | null;
-}
-
-export interface FormatoArquivoApi {
-    url: string;
-    name?: string;
-    width?: number;
-    height?: number;
-    size?: number;
-    mime?: string;
 }
 
 export interface MenuPrincipalApi {

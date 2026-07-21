@@ -25,7 +25,8 @@ export default gql`
         descricao
       }
       curriculo {
-        formats
+        url
+        name
       }
       acoes {
         texto

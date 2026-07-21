@@ -43,6 +43,7 @@ export function HeroProfile({
                                     <a
                                         key={idx}
                                         href={item?.url || ""}
+                                        target={item?.novaAba ? '_blank' : '_self'}
                                         className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white
                                          shadow-lg shadow-slate-950/10 transition-all hover:-translate-y-0.5 hover:bg-cyan-700 focus-visible:outline-none focus-visible:ring-2
                                          focus-visible:ring-cyan-600 focus-visible:ring-offset-2 active:translate-y-0 dark:bg-white dark:text-slate-950 dark:shadow-black/30 dark:hover:bg-cyan-200"

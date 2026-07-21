@@ -4,9 +4,7 @@ export default gql`
     query ConfiguracoesDoSite {
       configuracoesDoSite {
         documentId
-        curriculo {
-          formats
-        }
+        curriculo
         menuPrincipal {
           id
           ativo
