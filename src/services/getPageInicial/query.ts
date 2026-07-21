@@ -24,10 +24,6 @@ export default gql`
         icon
         descricao
       }
-      curriculo {
-        url
-        name
-      }
       acoes {
         texto
         tipoDestino

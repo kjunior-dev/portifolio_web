@@ -31,7 +31,7 @@ export interface HeroApi {
     iconn: string | null;
     objetivo: string | null;
     competencias: HeroCompetenciaApi[];
-    curriculo: MediaApi | null;
+    curriculo: string;
     acoes: AcaoApi[];
     redesSociais: RedeSocialApi[];
 }
