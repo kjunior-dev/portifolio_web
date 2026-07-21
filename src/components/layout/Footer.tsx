@@ -49,7 +49,7 @@ export function Footer({
                               href={link.url}
                               target={link.url.startsWith("http") ? "_blank" : undefined}
                               rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
-                              className="inline-flex size-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition-colors hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:border-slate-700 dark:text-slate-300 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/40 dark:hover:text-cyan-300"
+                              className="inline-flex size-7 items-center justify-center rounded-full text-slate-600 transition-colors hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:border-slate-700 dark:text-slate-300 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/40 dark:hover:text-cyan-300"
                               aria-label={link.nome}
                           >
                             {
