@@ -10,9 +10,7 @@ export function AvatarProfile({
     hero
 }: IAvatarProfile){
     const profileImageUrl = hero?.fotoPerfil?.formats?.small?.url;
-    const profileImageSrc = profileImageUrl?.startsWith("/uploads/")
-        ? `/api${profileImageUrl}`
-        : profileImageUrl;
+    const profileImageSrc = profileImageUrl?.startsWith("/uploads/") ? `/api${profileImageUrl}` : profileImageUrl;
 
     const Icon = getSocialIcon(hero?.iconn || "")
 
@@ -20,7 +18,7 @@ export function AvatarProfile({
         <div className="flex items-center gap-4">
             {profileImageSrc && (
                 <Image
-                    src={profileImageSrc}
+                    src={profileImageSrc || '/foto-perfil.png'}
                     width={96}
                     height={96}
                     priority
