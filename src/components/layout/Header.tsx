@@ -2,6 +2,7 @@
 
 import { LuDownload as Download, LuMenu as Menu, LuX as X } from "react-icons/lu";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { ConfiguracoesDoSiteApi } from "@/types/confSite";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
@@ -12,9 +13,17 @@ export function Header({
     menu
 }: IHeader) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
   const curriculoUrl = menu?.curriculo ?? "";
 
   const closeMenu = () => setIsMenuOpen(false);
+  const getMenuUrl = (url: string) => {
+    if (!url.startsWith("#")) {
+      return url;
+    }
+
+    return pathname === "/" ? url : `/${url}`;
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-950/90">
@@ -23,7 +32,7 @@ export function Header({
         aria-label="Navegação principal"
       >
         <a
-          href="#hero"
+          href={getMenuUrl("#hero")}
           onClick={closeMenu}
           className="group inline-flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-4"
           aria-label="Ir para o início"
@@ -41,7 +50,7 @@ export function Header({
           {menu?.menuPrincipal.map((item) => (
             <a
               key={item.id}
-              href={item.url}
+              href={getMenuUrl(item.url)}
               className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
             >
               {item.texto}
@@ -60,7 +69,7 @@ export function Header({
             CV
           </a>
           <a
-            href="#contato"
+            href={getMenuUrl("#contato")}
             className="inline-flex h-10 items-center rounded-full bg-slate-950 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 active:translate-y-0 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-200"
           >
             Contacto
@@ -85,7 +94,7 @@ export function Header({
             {menu?.menuPrincipal.map((item) => (
               <a
                 key={item.id}
-                href={item.url}
+                href={getMenuUrl(item.url)}
                 onClick={closeMenu}
                 className="rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:text-slate-200 dark:hover:bg-slate-800"
               >
@@ -107,7 +116,7 @@ export function Header({
                 CV
               </a>
               <a
-                href="#contact"
+                href={getMenuUrl("#contato")}
                 onClick={closeMenu}
                 className="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 dark:bg-white dark:text-slate-950"
               >

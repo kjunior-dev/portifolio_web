@@ -6,6 +6,8 @@ import {
     FaGithub,
     FaInstagram,
     FaLinkedinIn,
+    FaRegClock,
+    FaUser,
     FaWhatsapp,
     FaXTwitter,
     FaYoutube,
@@ -14,13 +16,14 @@ import {
 import { MdEmail } from "react-icons/md";
 import {FaArrowCircleRight, FaMapMarkerAlt} from "react-icons/fa";
 import {GoDownload} from "react-icons/go";
-import {LuLayoutDashboard, LuLayoutGrid, LuMonitorSmartphone, LuTrendingUp, LuWrench} from "react-icons/lu";
+import {LuHash, LuLayoutDashboard, LuLayoutGrid, LuMonitorSmartphone, LuTrendingUp, LuWrench} from "react-icons/lu";
 import {FiServer} from "react-icons/fi";
 import {BiCodeCurly} from "react-icons/bi";
 import {GrSecure} from "react-icons/gr";
 import {IoTerminal} from "react-icons/io5";
 import {RiGraduationCapFill} from "react-icons/ri";
-import {BsPatchCheck} from "react-icons/bs";
+import {BsFillPatchCheckFill, BsPatchCheck} from "react-icons/bs";
+import {CiCalendar} from "react-icons/ci";
 
 export const socialIcons = {
     FaGithub,
@@ -47,6 +50,11 @@ export const socialIcons = {
     LuTrendingUp,
     RiGraduationCapFill,
     BsPatchCheck,
+    BsFillPatchCheckFill,
+    FaUser,
+    CiCalendar,
+    FaRegClock,
+    LuHash,
 } satisfies Record<string, IconType>;
 
 export type SocialIconName = keyof typeof socialIcons;

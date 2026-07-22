@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner";
+import { Footer, Header } from "@/components/layout";
+import { getConfSite } from "@/services/getConfSite";
+import { getPageInicial } from "@/services/getPageInicial";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -8,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s | Kevin Sousa",
   },
   description:
-    "Portfólio profissional de Kevin Sousa, desenvolvedor de software com experiência em Next.js, React, TypeScript, Node.js, APIs REST, PostgreSQL, Tailwind CSS e mecatrónica automóvel.",
+    "Portfólio profissional de Kevin Sousa, desenvolvedor de software com experiência em Next.js, React, TypeScript, Node.js, APIs REST, PostgreSQL, Tailwind CSS.",
   keywords: [
     "Kevin Sousa",
     "Desenvolvedor de Software",
@@ -19,7 +22,6 @@ export const metadata: Metadata = {
     "PostgreSQL",
     "Tailwind CSS",
     "APIs REST",
-    "Mecatrónica automóvel",
   ],
   authors: [{ name: "Kevin Sousa" }],
   creator: "Kevin Sousa",
@@ -38,15 +40,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [menu, paginaInicial] = await Promise.all([
+    getConfSite().catch(() => null),
+    getPageInicial().catch(() => null),
+  ]);
+
   return (
     <html lang="pt" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        {children}
+        <div className="min-h-screen bg-white dark:bg-slate-950">
+          <Header menu={menu} />
+          {children}
+          <Footer footer={paginaInicial?.footer} />
+        </div>
         <Toaster richColors position="top-right" />
       </body>
     </html>

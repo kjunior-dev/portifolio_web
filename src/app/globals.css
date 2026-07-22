@@ -215,6 +215,16 @@ html {
   .field {
     @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 shadow-sm transition-all placeholder:text-slate-400 focus:border-cyan-500 focus:outline-none focus:ring-4 focus:ring-cyan-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:ring-cyan-950;
   }
+
+  .certificado-preview-frame {
+    border: 0;
+    overflow: hidden;
+    scrollbar-width: none;
+  }
+
+  .certificado-preview-frame::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
