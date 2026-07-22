@@ -15,9 +15,7 @@ export const client = new ApolloClient({
     link: new HttpLink({
         uri: url,
         fetchOptions: {
-            next: {
-                revalidate: 60,
-            }
+            cache: "no-store",
         },
         headers: {
             Authorization: `Bearer ${token}`,
@@ -25,4 +23,13 @@ export const client = new ApolloClient({
         },
     }),
     cache: new InMemoryCache(),
+
+    defaultOptions: {
+        query: {
+            fetchPolicy: "no-cache",
+        },
+        watchQuery: {
+            fetchPolicy: "no-cache",
+        },
+    },
 });
