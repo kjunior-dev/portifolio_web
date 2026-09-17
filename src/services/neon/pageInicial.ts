@@ -3,7 +3,7 @@ import {
     fetchFirstComponent,
     getComponentLinks,
 } from "@/services/neon/components";
-import {PaginaInicialQueryResponse} from "@/types/paginaInicial.interface";
+import {PaginaInicialApi, PaginaInicialQueryResponse} from "@/types/paginaInicial.interface";
 
 export async function getPageInicialNeon(): Promise<PaginaInicialQueryResponse | null> {
     const entries = await neonQuery<{ id: number; document_id: string }>(
@@ -49,5 +49,5 @@ export async function getPageInicialNeon(): Promise<PaginaInicialQueryResponse |
         footer: await getSection("footer"),
     };
 
-    return {paginaInicial};
+    return {paginaInicial: paginaInicial as PaginaInicialApi};
 }

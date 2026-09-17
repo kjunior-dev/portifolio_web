@@ -3,7 +3,7 @@ import {
     fetchFirstComponent,
     getComponentLinks,
 } from "@/services/neon/components";
-import {ConfiguracoesDoSiteResponse} from "@/types/confSite";
+import {ConfiguracoesDoSiteResponse, MenuPrincipalApi} from "@/types/confSite";
 
 export async function getConfSiteNeon(): Promise<ConfiguracoesDoSiteResponse | null> {
     const entries = await neonQuery<{ id: number; document_id: string; curriculo: string | null }>(
@@ -37,7 +37,7 @@ export async function getConfSiteNeon(): Promise<ConfiguracoesDoSiteResponse | n
         configuracoesDoSite: {
             documentId: entry.document_id,
             curriculo: entry.curriculo,
-            menuPrincipal,
+            menuPrincipal: menuPrincipal as unknown as MenuPrincipalApi[],
         },
     };
 }

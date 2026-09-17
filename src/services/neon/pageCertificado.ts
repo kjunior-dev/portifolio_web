@@ -3,7 +3,7 @@ import {
     fetchFirstComponent,
     getComponentLinks,
 } from "@/services/neon/components";
-import {PageCertificadoResponse} from "@/types/certificado.interface";
+import {CertificadoDetailsApi, PageCertificadoResponse} from "@/types/certificado.interface";
 
 export async function getPageCertificadoNeon(): Promise<PageCertificadoResponse | null> {
     const entries = await neonQuery<{
@@ -47,7 +47,7 @@ export async function getPageCertificadoNeon(): Promise<PageCertificadoResponse 
             etiqueta: entry.etiqueta,
             titulo: entry.titulo,
             descricao: entry.descricao,
-            certificadoDetails,
+            certificadoDetails: certificadoDetails as unknown as CertificadoDetailsApi[],
         },
     };
 }

@@ -4,6 +4,7 @@ import {
     fetchFirstComponent,
 } from "@/services/neon/components";
 import {
+    Projeto,
     ProjetosResponse,
     ProjetosPaginationArg,
 } from "@/types/projetos.interface";
@@ -57,7 +58,7 @@ export async function getProjetosNeon(
                 pageCount: Math.ceil(total / pageSize),
                 total,
             },
-            nodes,
+            nodes: nodes as unknown as Projeto[],
         },
     };
 }
