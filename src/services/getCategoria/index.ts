@@ -1,6 +1,7 @@
 import {client} from "@/lib/ApolloClient";
 import query from "@/services/getCategoria/query";
 import {categoriasDeProjetosMapper} from "@/services/getCategoria/mapper";
+import {getCategoriaNeon} from "@/services/neon";
 import {CategoriasDeProjetosResponse} from "@/types/categoriaTipo.interface";
 import {CombinedGraphQLErrors} from "@apollo/client";
 
@@ -23,8 +24,20 @@ export async function getCategorial(){
                     `[COLLETYON TYPES CATEGORIA]: Não tens permissão para aceder a estes dados.`
                 );
             }
+        }
 
-            return;
+        console.warn(
+            "[CATEGORIA]: Railway indisponível, a tentar NEO Console como fonte alternativa."
+        );
+
+        try {
+            const neonData = await getCategoriaNeon();
+
+            if (neonData) {
+                return categoriasDeProjetosMapper(neonData);
+            }
+        } catch (neonError) {
+            console.error("[CATEGORIA]: Erro ao carregar categorias do NEO Console.", neonError);
         }
 
         if (e instanceof Error) {

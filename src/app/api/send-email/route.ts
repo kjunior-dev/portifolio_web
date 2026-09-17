@@ -1,4 +1,5 @@
 import {NextResponse} from "next/server";
+import {neonExecute} from "@/lib/neonDb";
 
 const CMS_URL = process.env.CMS_URL;
 const COLLECTION_PATH = process.env.STRAPI_EMAIL_COLLECTION_PATH || "/api/emails";
@@ -65,6 +66,19 @@ export async function POST(req: Request) {
                 ? data
                 : data?.error?.message || data?.error || "Erro ao registrar log";
 
+            console.warn(
+                `[SEND EMAIL]: Strapi respondeu ${response.status}, a tentar salvar no NEO Console: ${message}`
+            );
+
+            const savedOnNeon = await saveEmailOnNeon(body);
+
+            if (savedOnNeon) {
+                return NextResponse.json({
+                    ok: true,
+                    message: "Mensagem registada no NEO Console.",
+                });
+            }
+
             return NextResponse.json(
                 {error: `Strapi respondeu ${response.status}: ${message}`},
                 {status: response.status}
@@ -74,11 +88,51 @@ export async function POST(req: Request) {
         return NextResponse.json(data);
 
     } catch (error) {
+        console.warn("[SEND EMAIL]: Railway indisponível, a tentar salvar no NEO Console.");
+
+        try {
+            const body = await req.clone().json();
+            const savedOnNeon = await saveEmailOnNeon(body);
+
+            if (savedOnNeon) {
+                return NextResponse.json({
+                    ok: true,
+                    message: "Mensagem registada no NEO Console.",
+                });
+            }
+        } catch (neonError) {
+            console.error("[SEND EMAIL]: Erro ao salvar no NEO Console.", neonError);
+        }
+
         console.error("route.ts → catch geral:", error);
 
         return NextResponse.json(
             {error: "Erro interno"},
             {status: 500}
         );
+    }
+}
+
+async function saveEmailOnNeon(body: Record<string, unknown>): Promise<boolean> {
+    if (!process.env.NEO_CONSOLE_BD) {
+        return false;
+    }
+
+    try {
+        await neonExecute(
+            `INSERT INTO emails (nome, email, assunto, mensagem, published_at, locale)
+             VALUES ($1, $2, $3, $4, NOW(), NULL)`,
+            [
+                body.nome || "",
+                body.email || "",
+                body.assunto || "",
+                body.mensagem || "",
+            ]
+        );
+
+        return true;
+    } catch (error) {
+        console.error("[SEND EMAIL]: Falha ao inserir no NEO Console.", error);
+        return false;
     }
 }

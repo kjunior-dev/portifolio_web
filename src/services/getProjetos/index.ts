@@ -2,6 +2,7 @@ import {CombinedGraphQLErrors} from "@apollo/client";
 import {client} from "@/lib/ApolloClient";
 import query from "@/services/getProjetos/query";
 import {projetosMapper} from "@/services/getProjetos/mapper";
+import {getProjetosNeon} from "@/services/neon";
 import {ProjetosPaginationArg, ProjetosResponse} from "@/types/projetos.interface";
 
 const PROJECTS_PAGE_SIZE = 4;
@@ -30,8 +31,20 @@ export async function getProjetos(pagination: ProjetosPaginationArg = {}) {
                     "[COLLECTION TYPES PROJETOS]: Não tens permissão para aceder a estes dados.",
                 );
             }
+        }
 
-            return;
+        console.warn(
+            "[PROJETOS]: Railway indisponível, a tentar NEO Console como fonte alternativa."
+        );
+
+        try {
+            const neonData = await getProjetosNeon(pagination);
+
+            if (neonData) {
+                return projetosMapper(neonData);
+            }
+        } catch (neonError) {
+            console.error("[PROJETOS]: Erro ao carregar projetos do NEO Console.", neonError);
         }
 
         if (e instanceof Error) {

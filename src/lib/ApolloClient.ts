@@ -4,12 +4,12 @@ import {ApolloClient, HttpLink, InMemoryCache} from "@apollo/client";
     const token = process.env.STRAPI_API_TOKEN;
 
     if (!url) {
-        throw new Error("URL_API_RAILWAY não foi configurada.");
-    }
+    throw new Error("URL_API_RAILWAY não foi configurada.");
+}
 
-    if (!token) {
-        throw new Error("STRAPI_API_TOKEN não foi configurado.");
-    }
+if (!token) {
+    throw new Error("STRAPI_API_TOKEN não foi configurado.");
+}
 
 export const client = new ApolloClient({
     link: new HttpLink({
